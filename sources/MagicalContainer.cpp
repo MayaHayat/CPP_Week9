@@ -10,8 +10,8 @@ void MagicalContainer :: addElement(int element){
     mysticalElements.insert(it, element);
     if(isPrime(element)){
         int *pointer = new int(element);
-        auto pointer_it = std::lower_bound(this->primeElements.begin(), this->primeElements.end(), pointer , [](const int* a, const int* b) {return *a < *b; });
-        primeElements.insert(pointer_it, pointer);
+        auto it2 = std::lower_bound(this->primeElements.begin(), this->primeElements.end(), pointer , [](const int* a, const int* b) {return *a < *b; });
+        primeElements.insert(it2, pointer);
     }
 }
 
@@ -21,9 +21,9 @@ void MagicalContainer :: removeElement(int element){
         throw std:: runtime_error ("Element not found in the vector.");
     this -> mysticalElements.erase(std::remove(mysticalElements.begin(), mysticalElements.end(), element), mysticalElements.end());
     if(isPrime(element)){
-        for (auto item = primeElements.begin(); item != primeElements.end(); ++item) {
-            if (**item == element) {
-                primeElements.erase(item);
+        for (auto it2 = primeElements.begin(); it2 != primeElements.end(); ++it2) {
+            if (**it2 == element) {
+                primeElements.erase(it2);
                 break;
             }
         }

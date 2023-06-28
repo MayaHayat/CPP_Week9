@@ -55,58 +55,30 @@ public:
         }
 
         // returns first number in the container
-        AscendingIterator begin() const{
-            return AscendingIterator(container);
-        }
+        AscendingIterator begin() const;
 
         // returns the end of the container
-        AscendingIterator end() const{
-            return AscendingIterator (container, container.mysticalElements.size());
-        }
+        AscendingIterator end() const;
 
         // if hasn't reached the end go to the next element
-        AscendingIterator& operator++(){
-            if (this ->index >= this->container.size()){
-                throw std :: runtime_error("Reached end of container.");
-            }
-            index++;
-            return *this;
-        }
+        AscendingIterator& operator++();
 
         // assigns the iterator to another iterator.
-        AscendingIterator& operator=(const AscendingIterator& other){
-            // makes sure it is the same type
-            if(&this->container != &other.container){
-                throw std :: runtime_error("Containers aren't the same");
-            }
-            // if they're not the same one
-            if(this != &other) {
-                this->index = other.index;
-            }
-            return *this;
-        }
+        AscendingIterator& operator=(const AscendingIterator& other);
+
 
         // returns the value of the element we're at
-        int operator*() const{ 
-            return container.mysticalElements[(index)];
-        }
+        int operator*() const;
 
         // compares 2 iterators
-        bool operator==(const AscendingIterator& other) const{
-            return this->index == other.index;
-        }
+        bool operator==(const AscendingIterator& other) const;
 
-        bool operator!=(const AscendingIterator& other) const{
-            return  !(*this == other);
-        }
-
+        bool operator!=(const AscendingIterator& other) const;
         
-        bool operator>(const AscendingIterator& other) const{
-            return this ->index > other.index;
-        }
-        bool operator<(const AscendingIterator& other) const{
-            return this ->index < other.index;
-        }
+        bool operator>(const AscendingIterator& other) const;
+        
+        bool operator<(const AscendingIterator& other) const;
+        
 
 
 
@@ -135,58 +107,27 @@ public:
         }
 
         // Uses default constructor -> index = 0
-        PrimeIterator begin() const{
-            return PrimeIterator(container);
-        }
+        PrimeIterator begin() const;
 
         // Note that we're looking at the end of the primeElements vector here
-        PrimeIterator end() const{
-            return PrimeIterator((this->container), (container).primeElements.size());
-        }
+        PrimeIterator end() const;
 
         // Moves to the next prime in container
-        PrimeIterator& operator++(){
-            // checks if not empty first
-            if(this->container.primeElements.empty()){
-                throw std::runtime_error("No primes found");
-            }
-            // checks if hasn't reached the end
-            if (this ->index >= this->container.primeElements.size()){
-                throw std :: runtime_error("Reached end of container");
-            }
-            index++;
-            return *this;
-        }
+        PrimeIterator& operator++();
 
         // Assigns the iterator to another one
-        PrimeIterator& operator=(const PrimeIterator& other){
-            if(&container != &other.container){
-                throw std :: runtime_error("Containers aren't the same");
-            }
-            if(this != &other) {
-                this->index = other.index;
-            }
-            return *this;
-        }
+        PrimeIterator& operator=(const PrimeIterator& other);
 
         // returns the value of number in that index(need to use * as it's a vectors of pointers)
-        int operator*() const{
-            return *container.primeElements[(index)];
-        }
+        int operator*() const;
 
         //
-        bool operator==(const PrimeIterator& other) const{
-            return this->index == other.index;
-        }
-        bool operator!=(const PrimeIterator& other) const{
-            return !(*this == other);
-        }
-        bool operator>(const PrimeIterator& other) const{
-            return this ->index > other.index;
-        }
-        bool operator<(const PrimeIterator& other) const{
-            return this ->index < other.index;
-        }
+        bool operator==(const PrimeIterator& other) const;
+
+        bool operator!=(const PrimeIterator& other) const;
+
+        bool operator>(const PrimeIterator& other) const;
+        bool operator<(const PrimeIterator& other) const;
 
 
         // ------------------ tidy -------------------
@@ -214,59 +155,25 @@ public:
             }
         }
 
-        SideCrossIterator begin() const{
-            return SideCrossIterator(container);
-        }
+        SideCrossIterator begin() const;
 
-        SideCrossIterator end() const{
-            return SideCrossIterator(container, container.mysticalElements.size());
+        SideCrossIterator end() const;
 
-        }
-
-        SideCrossIterator& operator++(){
-            if(index >= (container).mysticalElements.size()){
-                throw std::runtime_error("Reached end of container");
-            }
-            ++index;
-            // index/2 from the left side
-            if (index%2 == 0){
-                sideindex = index/2;
-            }
-            else{
-                // index/2 from the end of the container aka right size
-                sideindex = (container).mysticalElements.size()-1-(index/2) ;
-            }
-            return *this;
-        }
+        SideCrossIterator& operator++();
         
 
-        SideCrossIterator& operator=(const SideCrossIterator& other){
-            if(&this->container != &other.container){
-                throw std :: runtime_error("Containers aren't the same");
-            }
-            if(this != &other) {
-                this->index = other.index;
-            }
-            return *this;
-        }
+        SideCrossIterator& operator=(const SideCrossIterator& other);
 
         // Note that we're returning the specialIndex used
-        int operator*() const{
-            return container.mysticalElements[(sideindex)];
-        }
+        int operator*() const;
         
-        bool operator==(const SideCrossIterator& other) const{
-            return this->index == other.index;
-        }
-        bool operator!=(const SideCrossIterator& other) const{
-            return !(*this == other);
-        }
-        bool operator>(const SideCrossIterator& other) const{
-            return this ->index > other.index;
-        }
-        bool operator<(const SideCrossIterator& other) const{
-            return this ->index < other.index;
-        }
+        bool operator==(const SideCrossIterator& other) const;
+
+        bool operator!=(const SideCrossIterator& other) const;
+
+        bool operator>(const SideCrossIterator& other) const;
+
+        bool operator<(const SideCrossIterator& other) const;
         
 
         // ------------------ tidy -------------------
